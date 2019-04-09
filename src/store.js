@@ -1,19 +1,35 @@
-import { applyMiddleware, createStore } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-
+import { createBrowserHistory } from 'history'
+import { applyMiddleware, compose, createStore } from 'redux'
+import { routerMiddleware } from 'connected-react-router'
 import thunk from 'redux-thunk'
 import promise from 'redux-promise-middleware'
 
-import reducer from './reducers'
+import createRootReducer from './reducers'
 
-// No logger in production
-const middleware = applyMiddleware(promise, thunk)
+export const history = createBrowserHistory()
 
-const store = process.env.NODE_ENV === 'production'
-  ? createStore(reducer, middleware)
-  : createStore(
-    reducer,
-    composeWithDevTools(middleware)
+export default function configureStore (preloadedState) {
+  const middleware = applyMiddleware(
+    routerMiddleware(history), // for dispatching history actions
+    promise,
+    thunk
+  )
+  const enhancers = []
+  if (process.env.NODE_ENV === 'development') {
+    const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__
+
+    if (typeof devToolsExtension === 'function') {
+      enhancers.push(devToolsExtension())
+    }
+  }
+  const store = createStore(
+    createRootReducer(history), // root reducer with router state
+    preloadedState,
+    compose(
+      middleware,
+      ...enhancers
+    )
   )
 
-export default store
+  return store
+}
