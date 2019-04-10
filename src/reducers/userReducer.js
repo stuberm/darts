@@ -1,13 +1,17 @@
-export default (state = [], action) => {
+import * as Types from '../constants/actionTypes'
+
+export default (users = [], action) => {
   switch (action.type) {
-    case 'ADD_USER':
+    case Types.ADD_USER:
       return [
-        ...state,
+        ...users,
         {
           name: action.name
         }
       ]
+    case Types.DELETE_USER:
+      return users.filter(user => user.name !== action.name)
     default:
-      return state
+      return users
   }
 }
