@@ -1,14 +1,24 @@
 import { createBrowserHistory } from 'history'
 import { applyMiddleware, compose, createStore } from 'redux'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 import { routerMiddleware } from 'connected-react-router'
 import thunk from 'redux-thunk'
 import promise from 'redux-promise-middleware'
 
 import createRootReducer from './reducers'
 
-export const history = createBrowserHistory()
+const history = createBrowserHistory()
+const rootReducer = createRootReducer(history)
 
-export default function configureStore (preloadedState) {
+const persistConfig = {
+  key: 'root',
+  storage,
+  blacklist: ['router']
+}
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+export default () => {
   const middleware = applyMiddleware(
     routerMiddleware(history), // for dispatching history actions
     promise,
@@ -23,13 +33,18 @@ export default function configureStore (preloadedState) {
     }
   }
   const store = createStore(
-    createRootReducer(history), // root reducer with router state
-    preloadedState,
+    persistedReducer, // root reducer with router state
     compose(
       middleware,
       ...enhancers
     )
   )
 
-  return store
+  const persistor = persistStore(store)
+
+  return {
+    history,
+    store,
+    persistor
+  }
 }
