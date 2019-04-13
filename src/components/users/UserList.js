@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Box, Container, IconButton } from 'gestalt'
 
 const propTypes = {
   users: PropTypes.array.isRequired,
@@ -8,16 +9,28 @@ const propTypes = {
 
 export default function UserList ({ users, onDelete }) {
   return users && users.map(user => (
-    <div key={user.name}>
-      { user.name }
-      {
-        onDelete && (
-          <button type="button" onClick={() => onDelete(user.name)}>
-            x
-          </button>
-        )
-      }
-    </div>
+    <Container key={user.name}>
+      <Box
+        display="flex"
+        direction="row"
+        padding={2}
+        width="100%"
+        maxWidth={500}
+        justifyContent="between">
+        { user.name }
+        {
+          onDelete && (
+            <IconButton
+              type="button"
+              icon="remove"
+              iconColor="red"
+              accessibilityLabel="Remove"
+              onClick={() => onDelete(user.name)}
+            />
+          )
+        }
+      </Box>
+    </Container>
   ))
 }
 

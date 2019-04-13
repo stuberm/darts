@@ -11,7 +11,6 @@ class Users extends PureComponent {
     const { addUser, deleteUser, users } = this.props
     return (
       <div>
-        <h1>Users</h1>
         <UserForm onSave={addUser} />
         <UserList users={users} onDelete={deleteUser} />
       </div>
