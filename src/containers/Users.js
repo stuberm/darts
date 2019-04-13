@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { addUser, deleteUser } from '../actions/userActions'
+import { addUser, deleteUser } from '../modules/users'
 import UserList from '../components/users/UserList'
 import UserForm from '../components/users/UserForm'
 
