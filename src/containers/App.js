@@ -16,7 +16,7 @@ const { store, persistor, history } = createStore()
 
 WebFont.load({
   google: {
-    families: ['Indie Flower']
+    families: ['Raleway']
   }
 })
 
