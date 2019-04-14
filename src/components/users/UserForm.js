@@ -55,6 +55,11 @@ export default function UserForm ({ onSave, users }) {
               setErrorMessage(null)
               setName(value)
             }}
+            onKeyDown={({ event }) => {
+              if (event.key === 'Enter') {
+                submit()
+              }
+            }}
             errorMessage={errorMessage}
           />
         </Box>
