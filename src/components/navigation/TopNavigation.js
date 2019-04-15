@@ -6,7 +6,7 @@ export default function TopNavigation (props) {
   return (
     <div className="top-navigation">
       <Container>
-        <NavLink exact to="/" >Home</NavLink>
+        <NavLink exact to="/" >Start game</NavLink>
         <NavLink to="/users">Users</NavLink>
       </Container>
     </div>

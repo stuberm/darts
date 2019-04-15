@@ -9,7 +9,7 @@ import createStore from '../store/'
 import WebFont from 'webfontloader'
 
 import TopNavigation from '../components/navigation/TopNavigation'
-import Home from './Home'
+import StartGame from './StartGame'
 import Users from './Users'
 
 const { store, persistor, history } = createStore()
@@ -28,7 +28,7 @@ class App extends Component {
           <ConnectedRouter history={history}>
             <TopNavigation />
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/" component={StartGame} />
               <Route path="/users" component={Users} />
             </Switch>
           </ConnectedRouter>
