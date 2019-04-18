@@ -1,23 +1,25 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Container } from 'gestalt'
 
 import { addPlayer, removePlayer, start } from '../modules/game'
 import SelectPlayers from '../components/startGame/SelectPlayers'
+import StartButton from '../components/startGame/StartButton'
 
 class Users extends PureComponent {
   render () {
-    const { users, game, addPlayer, removePlayer } = this.props
+    const { users, game, addPlayer, removePlayer, start } = this.props
     return (
-      <div>
+      <Container>
         <SelectPlayers
           selectedPlayers={game.players}
           onAdd={addPlayer}
           onRemove={(user) => removePlayer(user)}
           users={users}
         />
-        {/* <UserList users={users} onDelete={deleteUser} /> */}
-      </div>
+        <StartButton onClick={start} />
+      </Container>
     )
   }
 }
