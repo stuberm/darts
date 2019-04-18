@@ -2,16 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import StartGame from './StartGame'
+import Game from './Game'
 
 const propTypes = {
   isStarted: PropTypes.bool
 }
 
 const GameContainer = ({ isStarted }) => {
-  if (isStarted) {
-    return <div>Game is started</div>
-  } else {
+  if (!isStarted) {
     return <StartGame />
+  } else {
+    return <Game />
   }
 }
 

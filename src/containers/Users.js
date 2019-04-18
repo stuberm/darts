@@ -5,16 +5,16 @@ import { connect } from 'react-redux'
 import { addUser, deleteUser } from '../modules/users'
 import UserList from '../components/users/UserList'
 import UserForm from '../components/users/UserForm'
+import TopNavigation from '../components/navigation/TopNavigation'
 
 class Users extends PureComponent {
   render () {
     const { addUser, deleteUser, users } = this.props
-    return (
-      <div>
-        <UserForm users={users} onSave={addUser} />
-        <UserList users={users} onDelete={deleteUser} />
-      </div>
-    )
+    return ([
+      <TopNavigation key="navigation" />,
+      <UserForm key="form" users={users} onSave={addUser} />,
+      <UserList key="list" users={users} onDelete={deleteUser} />
+    ])
   }
 }
 

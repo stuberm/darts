@@ -8,7 +8,6 @@ import { PersistGate } from 'redux-persist/integration/react'
 import createStore from '../store/'
 import WebFont from 'webfontloader'
 
-import TopNavigation from '../components/navigation/TopNavigation'
 import GameContainer from './GameContainer'
 import Users from './Users'
 
@@ -26,7 +25,6 @@ class App extends Component {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <ConnectedRouter history={history}>
-            <TopNavigation />
             <Switch>
               <Route exact path="/" component={GameContainer} />
               <Route path="/users" component={Users} />

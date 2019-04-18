@@ -4,14 +4,16 @@ import { connect } from 'react-redux'
 import { Container } from 'gestalt'
 
 import { addPlayer, removePlayer, start } from '../modules/game'
+import TopNavigation from '../components/navigation/TopNavigation'
 import SelectPlayers from '../components/startGame/SelectPlayers'
 import StartButton from '../components/startGame/StartButton'
 
 class Users extends PureComponent {
   render () {
     const { users, game, addPlayer, removePlayer, start } = this.props
-    return (
-      <Container>
+    return ([
+      <TopNavigation key="navigation" />,
+      <Container key="content">
         <SelectPlayers
           selectedPlayers={game.players}
           onAdd={addPlayer}
@@ -20,7 +22,7 @@ class Users extends PureComponent {
         />
         <StartButton onClick={start} />
       </Container>
-    )
+    ])
   }
 }
 
