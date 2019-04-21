@@ -13,7 +13,7 @@ const initialState = {
   isStarted: false,
   players: [],
   playerTurn: 0,
-  gameTurn: 0
+  gameTurn: 1
 }
 
 // Reducer
