@@ -18,7 +18,7 @@ export default function SelectPlayers ({
 }) {
   return (
     <Container>
-      <Heading color="white">
+      <Heading color="white" size="xs">
         Add players
       </Heading>
       <UserList
@@ -28,7 +28,7 @@ export default function SelectPlayers ({
         accessibilityLabel="Select"
         onClick={(user) => onAdd(user)}
       />
-      <Heading color="white">
+      <Heading color="white" size="xs">
         Selected players
       </Heading>
       <UserList
