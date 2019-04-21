@@ -10,7 +10,7 @@ const GameNavigation = ({ gameTurn, end, nextGameTurn, nextPlayerTurn }) => {
       <Container>
         <Box display="flex" justifyContent="between" alignItems="center">
           <Box>
-            { `Round ${gameTurn}` }
+            { `Round ${gameTurn + 1}` }
           </Box>
           <Box>
             <Button

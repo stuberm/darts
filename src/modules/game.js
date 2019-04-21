@@ -13,7 +13,7 @@ const initialState = {
   isStarted: false,
   players: [],
   playerTurn: 0,
-  gameTurn: 1
+  gameTurn: 0
 }
 
 // Reducer
@@ -70,10 +70,12 @@ export default (state = initialState, action) => {
       const playersCopy = [...players]
       const playerCopy = { ...playersCopy[playerTurn] }
       if (!playerCopy.scores[gameTurn]) {
-        playerCopy.scores[gameTurn] = []
+        playerCopy.scores[gameTurn] = [action.points]
+      } else {
+        playerCopy.scores[gameTurn].push(action.points)
       }
-      playerCopy.scores[gameTurn].push(action.points)
       playersCopy[playerTurn] = playerCopy
+      console.log(action, playerCopy.scores)
       return {
         ...state,
         players: [...playersCopy]
